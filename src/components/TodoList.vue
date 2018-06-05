@@ -1,26 +1,31 @@
 <template>
     <div>
-        <ul>
-            <li v-for="(todoItem, index) in propsData" :key="todoItem.item" class="shadow">
+        <transition-group name="list" tag="ul">
+            <li v-for="(todoItem, index) in this.$store.state.todoItems" :key="todoItem.item" class="shadow">
                 <i :class="{checkBtnCompleted: todoItem.completed}" class="fas fa-check checkBtn" @click="toggleComplete(todoItem, index)"></i>
                 <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
                 <span @click="removeTodo(todoItem, index)" class="removeBtn">
                     <i class="fas fa-trash-alt"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['propsData'],
     methods: {
         removeTodo(todoItem, index) {
-            this.$emit('removeItem', todoItem, index);
+            // const obj = {
+            //     todoItem,
+            //     index
+            // }
+            // todoItem.index = index 
+            this.$store.commit('removeOneItem', {todoItem, index});
         },
         toggleComplete(todoItem, index) {
-            this.$emit('toggleItem', todoItem, index);
+            // todoItem.index = index;
+            this.$store.commit('toggleOneItem', {todoItem, index});
         }
     }
 }
@@ -58,5 +63,14 @@ export default {
     .removeBtn {
         margin-left: auto;
         color: #de4343;
+    }
+
+    /*list item transition*/
+    .list-enter-active, .list-leave-active {
+        transition: all 0.5s;
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
     }
 </style>
