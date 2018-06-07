@@ -3,7 +3,6 @@
       <todo-header></todo-header>
       <todo-input></todo-input>
       <todo-list
-        v-on:removeItem="removeOneItem"
         v-on:toggleItem="toggleOneItem"
       ></todo-list>
       <todo-footer v-on:clearAll="clearAllItems"></todo-footer>
@@ -24,11 +23,6 @@ export default {
     TodoFooter
   },
   methods: {
-    // mutations
-    removeOneItem(todoItem, index) {
-      localStorage.removeItem(todoItem.item);
-      this.todoItems.splice(index, 1);      
-    },
     toggleOneItem(todoItem, index) {
       this.todoItems[index].completed = !this.todoItems[index].completed;
       localStorage.removeItem(todoItem.item);
