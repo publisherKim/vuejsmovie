@@ -2,9 +2,9 @@
     <div>
         <transition-group name="list" tag="ul">
             <li v-for="(todoItem, index) in todoItems" :key="todoItem.item" class="shadow">
-                <i :class="{checkBtnCompleted: todoItem.completed}" class="fas fa-check checkBtn" @click="toggleComplete(todoItem, index)"></i>
+                <i :class="{checkBtnCompleted: todoItem.completed}" class="fas fa-check checkBtn" @click="toggleComplete({todoItem, index})"></i>
                 <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
-                <span @click="removeTodo(todoItem, index)" class="removeBtn">
+                <span @click="removeTodo({todoItem, index})" class="removeBtn">
                     <i class="fas fa-trash-alt"></i>
                 </span>
             </li>
@@ -20,22 +20,10 @@ export default {
         ...mapGetters(['todoItems'])
     },
     methods: {
-        // ...mapMutations({
-        //     removeTodo: 'removeOneItem',
-        //     toggleComplete:'toggleOneItem'
-        // }),
-        removeTodo(todoItem, index) {
-            // const obj = {
-            //     todoItem,
-            //     index
-            // }
-            // todoItem.index = index 
-            this.$store.commit('removeOneItem', {todoItem, index});
-        },
-        toggleComplete(todoItem, index) {
-            // todoItem.index = index;
-            this.$store.commit('toggleOneItem', {todoItem, index});
-        }
+        ...mapMutations({
+            removeTodo: 'removeOneItem',
+            toggleComplete:'toggleOneItem'
+        })
     }
 }
 </script>
