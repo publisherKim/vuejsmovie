@@ -1,21 +1,18 @@
-# helpers refactory
+# helpers mapMutations
 ```javascript
     // store.js
-    getters: {
-        storedTodoItems(state) {
-            return state.todoItems;
-        } 
-    },
-    // TodoList.vue
-    import { mapGetters } from 'vuex';
 
-    computed: {
-        todoItems() {
-            return this.$store.getters.storedTodoItems;
-        }
-        // or
-        ...mapGetters({
-            todoItems: 'storedTodoItems'
+    // TodoList.vue
+    import { mapGetters, mapMutations } from 'vuex';
+
+    // methods
+    methods: {
+        ...mapMutations({
+            removeTodo: 'removeOneItem', toggleComplete: 'toggleOneItem'
         })
-    },        
+    }
+    // template
+    @click="toggleComplete({todoItem, index})"
+    @click="removeTodo({todoItem, index})"
+  
 ```
