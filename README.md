@@ -1,2 +1,2 @@
 # mutations
-+ toggleOneItem refactory
++ clearAllItems refactory

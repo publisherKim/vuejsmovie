@@ -3,7 +3,7 @@
       <todo-header></todo-header>
       <todo-input></todo-input>
       <todo-list></todo-list>
-      <todo-footer v-on:clearAll="clearAllItems"></todo-footer>
+      <todo-footer></todo-footer>
   </div>
 </template>
 
@@ -19,12 +19,6 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter
-  },
-  methods: {
-    clearAllItems() {
-      localStorage.clear();
-      this.todoItems = [];
-    }
   }
 }
 </script>

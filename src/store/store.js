@@ -37,5 +37,9 @@ export const store = new Vuex.Store({
             state.todoItems[payload.index].completed = !state.todoItems[payload.index].completed;
 
         },
+        clearAllItems(state) {
+            localStorage.clear();
+            state.todoItems = [];
+        }
     }
 });
