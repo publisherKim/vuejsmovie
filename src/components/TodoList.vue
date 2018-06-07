@@ -1,15 +1,91 @@
 <template>
     <div>
-        list
+        <ul>
+            <li
+                v-for="(todoItem, index) in todoItems"
+                :key="index"
+                class="shadow"
+            >
+                {{todoItem}}
+                <span
+                    @click="removeTodo(todoItem, index)"
+                    class="removeBtn"
+                >
+                    <i class="fas fa-trash-alt"></i>
+                </span>
+            </li>
+        </ul>
     </div>
 </template>
 
 <script>
 export default {
-    
+    created() {
+        if(localStorage.length > 0) {
+            for(let i = 0; i < localStorage.length; i++) {
+                // 불필요한거 제거
+                if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+                    this.todoItems.push(localStorage.key(i));
+                }
+            }
+        }
+    },
+    data() {
+        return {
+            todoItems: []
+        };
+    },
+    methods: {
+        removeTodo(todoItem, index) {
+            console.log('clicked', todoItem, index);
+            // 지우는 로직
+            localStorage.removeItem(todoItem);
+            this.todoItems.splice(index, 1);
+        }
+    }
 }
 </script>
 
 <style scoped>
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+        margin-top: 0;
+        text-align: left;
+    }
+    li {
+        display: flex;
+        min-height: 50px;
+        height: 50px;
+        line-height: 60px;
+        margin: 0.5rem 0;
+        padding: 0 0.9rem;
+        background: white;
+        border-radius: 5px;
+    }
+    .checkBtn {
+        line-height: 55px;
+        color: #62acde;
+        margin-right: 5px;
+    }
+    .checkBtnCompleted {
+        color: #b3adad;
+    }
+    .textCompleted {
+        text-decoration: line-through;
+        color: #b3adad;
+    }
+    .removeBtn {
+        margin-left: auto;
+        color: #de4343;
+    }
 
+    /*list item transition*/
+    .list-enter-active, .list-leave-active {
+        transition: all 0.5s;
+    }
+    .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        transform: translateY(30px);
+    }
 </style>
