@@ -23,11 +23,11 @@ export default {
     },
     methods: {
         addTodo() {
-            // 빈값일때 예외처리
             if(this.newTodoItem === '') return;
-
-            var obj = {completed: false, item: this.newTodoItem};
-            localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+            this.$emit('addTodoItem', this.newTodoItem);
+            this.clearInput();
+        },
+        clearInput() {
             this.newTodoItem = '';
         }
     }
