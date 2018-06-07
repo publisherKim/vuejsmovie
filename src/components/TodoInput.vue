@@ -23,8 +23,11 @@ export default {
     },
     methods: {
         addTodo() {
-            console.log('clicked', this.newTodoItem);
-            localStorage.setItem(this.newTodoItem, this.newTodoItem)
+            // 빈값일때 예외처리
+            if(this.newTodoItem === '') return;
+
+            var obj = {completed: false, item: this.newTodoItem};
+            localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
             this.newTodoItem = '';
         }
     }

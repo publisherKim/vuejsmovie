@@ -6,7 +6,13 @@
                 :key="index"
                 class="shadow"
             >
-                {{todoItem}}
+                <i 
+                    class="checkBtn fas fa-check"
+                    :class="{checkBtnCompleted: todoItem.completed}"
+                    @click="toggleComplete(todoItem, index)"
+                >
+                </i>
+                <span :class="{textCompleted: todoItem.completed}">{{todoItem.item}}</span>
                 <span
                     @click="removeTodo(todoItem, index)"
                     class="removeBtn"
@@ -23,9 +29,8 @@ export default {
     created() {
         if(localStorage.length > 0) {
             for(let i = 0; i < localStorage.length; i++) {
-                // 불필요한거 제거
                 if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-                    this.todoItems.push(localStorage.key(i));
+                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
                 }
             }
         }
@@ -37,10 +42,13 @@ export default {
     },
     methods: {
         removeTodo(todoItem, index) {
-            console.log('clicked', todoItem, index);
-            // 지우는 로직
             localStorage.removeItem(todoItem);
             this.todoItems.splice(index, 1);
+        },
+        toggleComplete(todoItem, index) {
+            todoItem.completed = !todoItem.completed
+            localStorage.removeItem(todoItem.item);
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
         }
     }
 }

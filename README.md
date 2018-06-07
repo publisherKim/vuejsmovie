@@ -1,12 +1,10 @@
-# todolist component make
-# data dyanamic byding
-# created vue lifecycle 자세한 내용은 vue api 참고
-# localStorage 데이터 가져오기
-# todoItems [data1, data2, data3, ...] 형태로 만듬
-# v-for="(todoItem, index) in todoItems" 모르면 공부해야함
-# removeBtn make
-# removeTodo
-# index 내장 키 잘활용하면 편한데 응용은 모르면 시간지나면 알아짐
-# removeTodo(todoItem, index) toditem = data1, toditem = 0 ... <-- 이해가 되면 좋음
-# console.log('clicked', todoItem, index);를 확인해보자
-# 지우는 로직이 2개인 이유는 어쩔수 없당
+# todolist complete 만들기
+# checkbox
+# toggleComplete method 만들기
+# todoInput에 completed 속성 추가하기
+# JSON.stringify(obj) 문자열로 변경하기 locaStorage 특성상 javascript object를 저장하면 타입이 저장된당.[object object]
+# localStorage 저장 방법이 바꼈기 때문에 꺼내올때 JSON.parse 해줘야함, 문자열을 다시 객체로
+# toggleCompleted logic this.todoItems[index].completed = !this.todoItems[index].completed || todoItem.completed = !todoItem.completed
+# localSotrage 삭제후 저장
+# localStorage.removeItem(todoItem.item);
+# localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
