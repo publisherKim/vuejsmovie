@@ -1,19 +1,21 @@
-# helper
-+ 헬퍼를 사용하고자 하는 vue 파일에서 아래와 같이 해당 헬퍼를 로딩
+# helpers refactory
 ```javascript
-    import {mapState} from 'vuex';
-    import {mapGetters} from 'vuex';
-    import {mapActions} from 'vuex';
-    import {mapMutations} from 'vuex';
+    // store.js
+    getters: {
+        storedTodoItems(state) {
+            return state.todoItems;
+        } 
+    },
+    // TodoList.vue
+    import { mapGetters } from 'vuex';
 
-    export default {
-        computed() {
-            ...mapState['num'],
-            mapGetters(['countNum'])
-        },
-        methods: {
-            ...mapMutations['clickBtn'],
-            ...mapActions(['asyncClickBtn'])
+    computed: {
+        todoItems() {
+            return this.$store.getters.storedTodoItems;
         }
-    }
+        // or
+        ...mapGetters({
+            todoItems: 'storedTodoItems'
+        })
+    },        
 ```
