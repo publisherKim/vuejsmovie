@@ -6,3 +6,6 @@
 # 서버가 없으니 로컬스토리지를 사용한다.
 # localStorage.setItem 모르면 검색하자.
 # 크롬 개발자도구 f12 application tab 확인해보면 키 값이 추가됨을 알수 있다.
+# css 대충 만들었다 침
+# fontawesome plus 검색해서 복사 붙여 넣기 <i class="fas fa-plus"></i>
+# @keyup.enter="addTodo" enter key에 대한 이벤트 처리
