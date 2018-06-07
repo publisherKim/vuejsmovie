@@ -2,7 +2,7 @@
   <div id="app">
       <todo-header></todo-header>
       <todo-input></todo-input>
-      <todo-list></todo-list>
+      <todo-list :propsData="todoItems"></todo-list>
       <todo-footer></todo-footer>
   </div>
 </template>
@@ -19,6 +19,20 @@ export default {
     TodoInput,
     TodoList,
     TodoFooter
+  },
+  created() {
+    if(localStorage.length > 0) {
+      for(let i = 0; i < localStorage.length; i++) {
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  },
+  data() {
+    return {
+      todoItems: []
+    };
   }
 }
 </script>
