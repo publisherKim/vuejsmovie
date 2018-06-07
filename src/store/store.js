@@ -19,8 +19,13 @@ const storage = {
 
 export const store = new Vuex.Store({
     state: {
-        headerText: `Todo it!!`,
         todoItems: storage.fetch()
-
+    },
+    mutations: {
+        addOneItem(state, payload) {
+            const obj = { completed: false, item: payload };
+            localStorage.setItem(payload, JSON.stringify(obj));
+            state.todoItems.push(obj);
+        }
     }
 });

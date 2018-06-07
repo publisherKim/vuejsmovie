@@ -1,9 +1,8 @@
 <template>
   <div id="app">
       <todo-header></todo-header>
-      <todo-input v-on:addTodoItem="addOneItem"></todo-input>
+      <todo-input></todo-input>
       <todo-list
-        :propsData="todoItems"
         v-on:removeItem="removeOneItem"
         v-on:toggleItem="toggleOneItem"
       ></todo-list>
@@ -24,17 +23,8 @@ export default {
     TodoList,
     TodoFooter
   },
-  data() {
-    return {
-      todoItems: []
-    };
-  },
   methods: {
-    addOneItem(todoItem) {
-      const obj = {completed: false, item: todoItem};
-      localStorage.setItem(todoItem, JSON.stringify(obj));
-      this.todoItems.push(obj);
-    },
+    // mutations
     removeOneItem(todoItem, index) {
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1);      
