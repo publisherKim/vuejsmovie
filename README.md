@@ -1,16 +1,13 @@
-# store module
-+ 아래와 같은 store 구조를 어떻게 모듈화 할 수 있을까 ?
+# 프로젝트 구조화와 모듈화 방법2
++ 앱이 비대해져서 1개의 store로는 관리가 힘들때  modules 속성 사용
 ```javascript
-    import Vue from 'vue'
-    import Vuex from 'vuex'
-    import * as getters from 'store/getters.js'
-    import * as actions from 'store/actions.js'
-    import * as mutations from 'store/mutations.js'
+    import Vue from 'vue';
+    import Vuex from 'vuex';
+    import todo from 'modules/todo.js'
 
     export const store = new Vuex.Store({
         state: {},
-        getters
-        actions,
+        getters,
         mutations
     });
 ```
