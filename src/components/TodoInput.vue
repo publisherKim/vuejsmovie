@@ -21,10 +21,11 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import Modal from './common/Modal.vue';
 
-export default {
+export default Vue.extend({
     components: {
         Modal
     },
@@ -35,7 +36,7 @@ export default {
         };
     },
     methods: {
-        addTodo() {
+        addTodo():void {
             if(this.newTodoItem === '') {
                 this.showModal = true;
             } else {
@@ -45,11 +46,11 @@ export default {
             } 
 
         },
-        clearInput() {
+        clearInput():void {
             this.newTodoItem = '';
         }
     }
-}
+});
 </script>
 
 <style scoped>
